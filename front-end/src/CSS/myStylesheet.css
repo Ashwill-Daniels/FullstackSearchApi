@@ -1,0 +1,66 @@
+/* ================= General section ===================== */
+
+/* Here I style the buttons in the accordion */
+.accord input {
+  margin-top: 10px;
+  margin-left: 110px;
+  width: 200px;
+  background-color: beige;
+}
+
+/* Here I style all the elements */
+body {
+  margin-top: 40px;
+  background-color: black;
+}
+
+/* Here I style all the h1 elements */
+h1 {
+  color: #3e4444;
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+/* This applies styling to the favorite list section and the search results section */
+#searchAccord,
+#favoriteAccord {
+  height: 750px;
+  overflow: auto;
+  margin-bottom: 30px;
+}
+
+/* ================ Middle section ====================== */
+
+/* This styles the entire middle section */
+#searchForm {
+  padding-top: 250px;
+  padding-right: 20px;
+  text-align: center;
+}
+
+/* This styles the search button */
+#searchBtnInput {
+  margin-top: 10px;
+  background-color: teal;
+  color: #3e4444;
+}
+
+/*  This styles the select element */
+#typeSelect {
+  margin-top: 10px;
+}
+
+/* ================== Favorite section ====================== */
+
+#favoriteSection {
+  background-color: teal;
+  width: 500px;
+  margin-right: 40px;
+}
+
+/* =================== Search section ========================= */
+#searchSection {
+  background-color: teal;
+  width: 500px;
+  margin-left: 40px;
+}
