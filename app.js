@@ -15,15 +15,6 @@ var app = express();
 // This port variable specifies the port address for the server
 const PORT = process.env.PORT || 8080;
 
-// Code for Heroku
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "front-end/build")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "front-end", "build", "index.html"));
-  });
-}
-app.use(express.static(path.join(__dirname, "front-end/build")));
-
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
@@ -55,6 +46,15 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+
+// Code for Heroku
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "front-end/build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "front-end", "build", "index.html"));
+  });
+}
+app.use(express.static(path.join(__dirname, "front-end/build")));
 
 // The back-end runs on port 8080
 app.listen(PORT);
