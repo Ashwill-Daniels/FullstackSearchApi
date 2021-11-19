@@ -1,5 +1,3 @@
-! [On launch] (screenshot1.PNG)
-
 ## Explanation
 
 - This app was built with React and Express.
@@ -12,6 +10,9 @@
 - This is done by pressing the 'add to favorites' button below the item.
 - Once added, these items can also be removed from the favorites list.
 - This is done by clicking the 'remove item' button below the item
+
+![before-search](screenshot1.PNG)
+![after-search](screenshot2.PNG)
 
 ## How to install
 
