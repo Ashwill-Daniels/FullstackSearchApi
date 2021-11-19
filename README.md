@@ -1,5 +1,8 @@
+![alt text] (screenshot1.PNG)
+
 ## Explanation
 
+- This app was built with React and Express.
 - This is an app that retrieves data from the iTunes API. The app has a search bar, which is used to type in the search terms.
 - The app also includes the option to search for a specific media type. This is done by selecting an option from the dropdown menu.
 - Press the search button below that to start the search.
@@ -12,7 +15,6 @@
 
 ## How to install
 
-- This app was built with React and Express.
 - Install node.js on your local computer: https://nodejs.org/en/download/
 - Navigate to the root folder of the app and run the command prompt in it.
 - Type into the command prompt: npm install
