@@ -40,6 +40,17 @@ if (process.env.NODE_ENV === "production") {
 }
 app.use(express.static(path.join(__dirname, "front-end/build")));
 
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+        "script-src": ["'self'", "'unsafe-inline'", "example.com"],
+      },
+    },
+  })
+);
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
