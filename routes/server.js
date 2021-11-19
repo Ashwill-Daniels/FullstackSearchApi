@@ -5,8 +5,8 @@ const fileHandler = require("fs");
 const fetch = require("node-fetch");
 
 // Below I parse the two custom json files that is read by the front-end
-const favorites = JSON.parse(fileHandler.readFileSync("./favorites.json"));
-const searchResults = JSON.parse(fileHandler.readFileSync("./searchResults.json"));
+const favorites = JSON.parse(fileHandler.readFileSync("./public/favorites.json"));
+const searchResults = JSON.parse(fileHandler.readFileSync("./public/searchResults.json"));
 
 //================ DEFAULT GET ============================================================
 // This displays the search result
@@ -52,7 +52,7 @@ router.get("/get/:search", (request, response) => {
       }
 
       fileHandler.writeFile(
-        "searchResults.json",
+        "./public/searchResults.json",
         JSON.stringify(searchResults, null, 2),
         (error) => {
           if (error) throw error;
@@ -99,7 +99,7 @@ router.get("/getMedia/:search/:mediaType", (request, response) => {
         }
 
         fileHandler.writeFile(
-          "searchResults.json",
+          "./public/searchResults.json",
           JSON.stringify(searchResults, null, 2),
           (error) => {
             if (error) throw error;
@@ -128,10 +128,14 @@ router.post("/post/:id", (request, response) => {
 
   favorites.push(newFavorite);
 
-  fileHandler.writeFile("favorites.json", JSON.stringify(favorites, null, 2), (error) => {
-    if (error) throw error;
-    else console.log("favorites.json updated");
-  });
+  fileHandler.writeFile(
+    "./public/favorites.json",
+    JSON.stringify(favorites, null, 2),
+    (error) => {
+      if (error) throw error;
+      else console.log("favorites.json updated");
+    }
+  );
 
   return response.json({ favorites });
 });
@@ -147,10 +151,14 @@ router.delete("/delete/:id", (request, response) => {
 
   favorites.splice(id, 1);
 
-  fileHandler.writeFile("favorites.json", JSON.stringify(favorites, null, 2), (error) => {
-    if (error) throw error;
-    else console.log("favorites.json updated");
-  });
+  fileHandler.writeFile(
+    "./public/favorites.json",
+    JSON.stringify(favorites, null, 2),
+    (error) => {
+      if (error) throw error;
+      else console.log("favorites.json updated");
+    }
+  );
 
   return response.json({ favorites });
 });
