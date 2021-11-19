@@ -1,4 +1,4 @@
-![alt text] (screenshot1.PNG)
+![On launch] (screenshot1.PNG)
 
 ## Explanation
 
