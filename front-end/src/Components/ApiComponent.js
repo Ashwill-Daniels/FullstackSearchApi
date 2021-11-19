@@ -49,7 +49,7 @@ class ApiComponent extends React.Component {
     if (selectedOption !== "") {
       try {
         const fetchApi = await fetch(
-          `/getMedia/${this.state.searchValue}/&entity=${selectedOption}`
+          `/api/getMedia/${this.state.searchValue}/&entity=${selectedOption}`
         );
         await fetchApi.json();
         console.log("Successfuly fetched");
@@ -58,7 +58,7 @@ class ApiComponent extends React.Component {
       }
     } else {
       try {
-        const fetchApi = await fetch(`/get/${this.state.searchValue}`);
+        const fetchApi = await fetch(`/api/get/${this.state.searchValue}`);
         await fetchApi.json();
         console.log("Successfuly fetched");
       } catch (error) {
@@ -72,13 +72,13 @@ class ApiComponent extends React.Component {
 
   //===================== .json files: GET ==============================================================
 
-  // This function loads the two json file on the page.
+  // This function loads the two json files on the page.
   // I make a double fetch request to the back-end using the Promise.all method.
 
   componentDidMount() {
     Promise.all([
-      fetch("/search").then((res) => res.json()),
-      fetch("/favorites").then((res) => res.json()),
+      fetch("/api/search").then((res) => res.json()),
+      fetch("/api/favorites").then((res) => res.json()),
     ]).then(([firstResult, secondResult]) => {
       this.setState({
         isLoaded: true,
@@ -100,7 +100,7 @@ class ApiComponent extends React.Component {
   addToFavorites(event) {
     let indexNumber = event.target.id;
 
-    fetch(`/post/${indexNumber}`, {
+    fetch(`/api/post/${indexNumber}`, {
       method: "POST",
     }).then((res) => res.json());
 
@@ -119,7 +119,7 @@ class ApiComponent extends React.Component {
   removeFromFavorites(event) {
     let indexNumber = event.target.id;
 
-    fetch(`/delete/${indexNumber}`, {
+    fetch(`/api/delete/${indexNumber}`, {
       method: "DELETE",
     }).then((res) => res.json());
 
