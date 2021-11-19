@@ -31,6 +31,15 @@ app.use(helmet());
 
 app.use("/api", serverRouter);
 
+// Code for Heroku
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "front-end/build")));
+  app.get("/*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "front-end", "build", "index.html"));
+  });
+}
+app.use(express.static(path.join(__dirname, "front-end/build")));
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
@@ -46,15 +55,6 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
-
-// Code for Heroku
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "front-end/build")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "front-end", "build", "index.html"));
-  });
-}
-app.use(express.static(path.join(__dirname, "front-end/build")));
 
 // The back-end runs on port 8080
 app.listen(PORT);
