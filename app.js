@@ -25,6 +25,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+        "script-src": ["'self'", "'unsafe-inline'", "example.com"],
+      },
+    },
+  })
+);
 // Here I use cors and helmet with middleware
 app.use(cors());
 app.use(helmet());
@@ -39,17 +49,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 app.use(express.static(path.join(__dirname, "front-end/build")));
-
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-        "script-src": ["'self'", "'unsafe-inline'", "example.com"],
-      },
-    },
-  })
-);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
